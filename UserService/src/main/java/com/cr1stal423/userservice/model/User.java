@@ -3,6 +3,7 @@ package com.cr1stal423.userservice.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,4 +38,11 @@ public class User extends BaseEntity {
     private List<Role> roles;
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    public void addRole(Role role){
+        if(roles == null){
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
+    }
 }
