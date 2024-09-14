@@ -1,1 +1,24 @@
+spring:
+  application:
+    name: UserService
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3307/UserDB
+    username: root
+    password: Sqlwer
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+      springframework:
+        transaction: DEBUG
 
