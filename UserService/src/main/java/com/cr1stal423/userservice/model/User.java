@@ -54,4 +54,7 @@ public class User extends BaseEntity {
         }
         address.add(userAddress);
     }
+    public void removeAddress(UserAddress userAddress){
+        address.remove(userAddress);
+    }
 }

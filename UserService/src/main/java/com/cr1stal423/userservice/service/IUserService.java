@@ -24,4 +24,16 @@ public interface IUserService {
 
     List<UserAddressDto> getUserAddress(Long userId);
 
+    boolean updateUserProfile(UserProfileDto userProfileDto, Long userId);
+
+    boolean updateUserAddress(UserAddressDto userAddressDto, Long addressId);
+
+    boolean deleteUserProfile(Long userId);
+
+    boolean deleteUserAddress(Long addressId);
+
+
+
+
+
 }

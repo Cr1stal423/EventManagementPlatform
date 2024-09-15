@@ -18,4 +18,13 @@ public class UserAddressMapper {
         userAddress.setCountry(userAddressDto.getCountry());
         return userAddress;
     }
+    public static UserAddressDto mapToUserAddressDto(UserAddress userAddress){
+        UserAddressDto userAddressDto = new UserAddressDto();
+        userAddressDto.setAddress(userAddress.getAddress());
+        userAddressDto.setCity(userAddress.getCity());
+        userAddressDto.setState(userAddress.getState());
+        userAddressDto.setCountry(userAddress.getCountry());
+        return userAddressDto;
+    }
+
 }

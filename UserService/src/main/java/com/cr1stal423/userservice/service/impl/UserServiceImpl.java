@@ -15,14 +15,15 @@ import com.cr1stal423.userservice.model.UserAddress;
 import com.cr1stal423.userservice.model.UserProfile;
 import com.cr1stal423.userservice.repository.RoleRepository;
 import com.cr1stal423.userservice.repository.UserAddressRepository;
+import com.cr1stal423.userservice.repository.UserProfileRepository;
 import com.cr1stal423.userservice.repository.UserRepository;
 import com.cr1stal423.userservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -30,12 +31,14 @@ public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserAddressRepository userAddressRepository;
+    private final UserProfileRepository userProfileRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserAddressRepository userAddressRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserAddressRepository userAddressRepository, UserProfileRepository userProfileRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.userAddressRepository = userAddressRepository;
+        this.userProfileRepository = userProfileRepository;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class UserServiceImpl implements IUserService {
         User user = UserMapper.mapToUser(userDto, new User());
         Optional<User> usernameOptional = userRepository.findByUsername(user.getUsername());
         Optional<User> emailOptional = userRepository.findByEmail(user.getEmail());
-        if (usernameOptional.isPresent() ) {
+        if (usernameOptional.isPresent()) {
             throw new UserAlreadyExistException("User with given username already exist");
         }
         if (emailOptional.isPresent()) {
@@ -127,17 +130,85 @@ public class UserServiceImpl implements IUserService {
         return userProfileDto;
     }
 
+    //    @Override
+//    public List<UserAddressDto> getUserAddress(Long userId) {
+//        User user = userRepository.findById(userId).orElseThrow(
+//                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+//        );
+//        List<UserAddress> userAddresses = user.getAddress();
+//        List<UserAddressDto> userAddressDtoList = new ArrayList<>();
+//        userAddresses.forEach(userAddress -> {
+//            UserAddressDto userAddressDto = UserAddressMapper.mapToUserAddressDto(userAddress, new UserAddressDto());
+//            userAddressDtoList.add(userAddressDto);
+//        });
+//        return userAddressDtoList;
+//    }
     @Override
     public List<UserAddressDto> getUserAddress(Long userId) {
+        return userRepository.findById(userId)
+                .map(user -> user.getAddress().stream()
+                        .map(UserAddressMapper::mapToUserAddressDto)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", String.valueOf(userId)));
+    }
+
+
+    @Override
+    public boolean updateUserProfile(UserProfileDto userProfileDto, Long userId) {
+        boolean isUpdated = true;
+        if (userProfileDto != null) {
+            User user = userRepository.findById(userId).orElseThrow(
+                    () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+            );
+            UserProfile userProfile = user.getProfile();
+            UserProfileMapper.mapToUserProfile(userProfileDto, userProfile);
+            user.setProfile(userProfile);
+            userRepository.save(user);
+            isUpdated = true;
+        }
+        return isUpdated;
+    }
+
+
+    @Override
+    public boolean updateUserAddress(UserAddressDto userAddressDto, Long addressId) {
+        if (userAddressDto == null) {
+            return false;
+        }
+        UserAddress userAddress = userAddressRepository.findById(addressId).orElseThrow(
+                () -> new ResourceNotFoundException("UserAddress", "id", String.valueOf(addressId))
+        );
+        UserAddress updatedAddress = UserAddressMapper.mapToUserAddress(userAddressDto, userAddress);
+        userAddressRepository.save(updatedAddress);
+        return true;
+    }
+
+    @Override
+    public boolean deleteUserProfile(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
         );
-        List<UserAddress> userAddresses = user.getAddress();
-        List<UserAddressDto> userAddressDtoList = new ArrayList<>();
-        userAddresses.forEach(userAddress -> {
-            UserAddressDto userAddressDto = UserAddressMapper.mapToUserAddressDto(userAddress, new UserAddressDto());
-            userAddressDtoList.add(userAddressDto);
-        });
-        return userAddressDtoList;
+        UserProfile userProfile = user.getProfile();
+        if (userProfile != null) {
+            user.setProfile(null);
+            userRepository.save(user);
+            userProfileRepository.delete(userProfile);
+            return true;
+        }
+        return false;
     }
+
+
+    @Override
+    public boolean deleteUserAddress(Long addressId) {
+        UserAddress address = userAddressRepository.findById(addressId).orElseThrow(
+                () -> new ResourceNotFoundException("UserAddress", "id", String.valueOf(addressId))
+        );
+        User user = address.getUser();
+        user.removeAddress(address);
+        userAddressRepository.delete(address);
+        return true;
+    }
+
+
 }
