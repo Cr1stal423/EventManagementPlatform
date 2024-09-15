@@ -45,4 +45,13 @@ public class User extends BaseEntity {
         }
         roles.add(role);
     }
+    public void removeRole(Role role){
+        roles.remove(role);
+    }
+    public void addAddress(UserAddress userAddress){
+        if(address == null){
+            address = new ArrayList<>();
+        }
+        address.add(userAddress);
+    }
 }

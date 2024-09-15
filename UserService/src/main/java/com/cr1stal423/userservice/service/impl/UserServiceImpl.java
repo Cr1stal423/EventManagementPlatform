@@ -1,21 +1,27 @@
 package com.cr1stal423.userservice.service.impl;
 
+import com.cr1stal423.userservice.DTO.UserAddressDto;
 import com.cr1stal423.userservice.DTO.UserDto;
 import com.cr1stal423.userservice.DTO.UserProfileDto;
 import com.cr1stal423.userservice.constants.UserConstants;
 import com.cr1stal423.userservice.exception.ResourceNotFoundException;
 import com.cr1stal423.userservice.exception.UserAlreadyExistException;
+import com.cr1stal423.userservice.mapper.UserAddressMapper;
 import com.cr1stal423.userservice.mapper.UserMapper;
 import com.cr1stal423.userservice.mapper.UserProfileMapper;
 import com.cr1stal423.userservice.model.Role;
 import com.cr1stal423.userservice.model.User;
+import com.cr1stal423.userservice.model.UserAddress;
 import com.cr1stal423.userservice.model.UserProfile;
 import com.cr1stal423.userservice.repository.RoleRepository;
+import com.cr1stal423.userservice.repository.UserAddressRepository;
 import com.cr1stal423.userservice.repository.UserRepository;
 import com.cr1stal423.userservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,11 +29,13 @@ public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final UserAddressRepository userAddressRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserAddressRepository userAddressRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.userAddressRepository = userAddressRepository;
     }
 
     @Override
@@ -94,5 +102,42 @@ public class UserServiceImpl implements IUserService {
         } else {
             throw new UserAlreadyExistException("User profile already exist");
         }
+    }
+
+    @Override
+    public void addUserAddress(UserAddressDto userAddressDto, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        UserAddress userAddress = UserAddressMapper.mapToUserAddress(userAddressDto, new UserAddress());
+//        user.addAddress(userAddress);
+        userAddress.setUser(user);
+        userAddressRepository.save(userAddress);
+//        userRepository.save(user);
+    }
+
+    @Override
+    public UserProfileDto getUserProfile(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        UserProfile userProfile = user.getProfile();
+        UserProfileDto userProfileDto = UserProfileMapper.mapToUserProfileDto(userProfile, new UserProfileDto());
+
+        return userProfileDto;
+    }
+
+    @Override
+    public List<UserAddressDto> getUserAddress(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        List<UserAddress> userAddresses = user.getAddress();
+        List<UserAddressDto> userAddressDtoList = new ArrayList<>();
+        userAddresses.forEach(userAddress -> {
+            UserAddressDto userAddressDto = UserAddressMapper.mapToUserAddressDto(userAddress, new UserAddressDto());
+            userAddressDtoList.add(userAddressDto);
+        });
+        return userAddressDtoList;
     }
 }

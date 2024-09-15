@@ -1,6 +1,7 @@
 package com.cr1stal423.userservice.controller;
 
 import com.cr1stal423.userservice.DTO.ResponseDto;
+import com.cr1stal423.userservice.DTO.UserAddressDto;
 import com.cr1stal423.userservice.DTO.UserDto;
 import com.cr1stal423.userservice.DTO.UserProfileDto;
 import com.cr1stal423.userservice.constants.UserConstants;
@@ -10,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -66,5 +69,27 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new ResponseDto(UserConstants.STATUS_200,UserConstants.MESSAGE_200));
+    }
+    @PostMapping("setUserAddress/{id}")
+    public ResponseEntity<ResponseDto> setUserAddress(@PathVariable("id") Long userId,
+                                                      @Valid @RequestBody UserAddressDto userAddressDto){
+        userService.addUserAddress(userAddressDto,userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto(UserConstants.STATUS_200,UserConstants.MESSAGE_200));
+    }
+    @GetMapping("/getUserProfile/{id}")
+    public ResponseEntity<UserProfileDto> getUserProfile(@PathVariable("id") Long userId){
+        UserProfileDto userProfileDto = userService.getUserProfile(userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userProfileDto);
+    }
+    @GetMapping("/getUserAddresses/{id}")
+    public ResponseEntity<List<UserAddressDto>> getUserAddresses(@PathVariable("id") Long userId){
+        List<UserAddressDto> userAddressDtoList = userService.getUserAddress(userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userAddressDtoList);
     }
 }
