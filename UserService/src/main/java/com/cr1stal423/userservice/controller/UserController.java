@@ -2,6 +2,7 @@ package com.cr1stal423.userservice.controller;
 
 import com.cr1stal423.userservice.DTO.ResponseDto;
 import com.cr1stal423.userservice.DTO.UserDto;
+import com.cr1stal423.userservice.DTO.UserProfileDto;
 import com.cr1stal423.userservice.constants.UserConstants;
 import com.cr1stal423.userservice.service.IUserService;
 import jakarta.validation.Valid;
@@ -57,5 +58,13 @@ public class UserController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDto(UserConstants.STATUS_500,UserConstants.MESSAGE_500));
         }
+    }
+    @PostMapping("setUserProfile/{id}")
+    public ResponseEntity<ResponseDto> setUserProfile(@PathVariable("id") Long userId,
+                                                      @Valid @RequestBody UserProfileDto userProfileDto){
+        userService.addUserProfile(userProfileDto,userId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto(UserConstants.STATUS_200,UserConstants.MESSAGE_200));
     }
 }

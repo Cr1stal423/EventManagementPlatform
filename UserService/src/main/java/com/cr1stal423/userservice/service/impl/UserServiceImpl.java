@@ -1,12 +1,15 @@
 package com.cr1stal423.userservice.service.impl;
 
 import com.cr1stal423.userservice.DTO.UserDto;
+import com.cr1stal423.userservice.DTO.UserProfileDto;
 import com.cr1stal423.userservice.constants.UserConstants;
 import com.cr1stal423.userservice.exception.ResourceNotFoundException;
 import com.cr1stal423.userservice.exception.UserAlreadyExistException;
 import com.cr1stal423.userservice.mapper.UserMapper;
+import com.cr1stal423.userservice.mapper.UserProfileMapper;
 import com.cr1stal423.userservice.model.Role;
 import com.cr1stal423.userservice.model.User;
+import com.cr1stal423.userservice.model.UserProfile;
 import com.cr1stal423.userservice.repository.RoleRepository;
 import com.cr1stal423.userservice.repository.UserRepository;
 import com.cr1stal423.userservice.service.IUserService;
@@ -30,9 +33,13 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void createUser(UserDto userDto) {
         User user = UserMapper.mapToUser(userDto, new User());
-        Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
-        if (userOptional.isPresent()) {
+        Optional<User> usernameOptional = userRepository.findByUsername(user.getUsername());
+        Optional<User> emailOptional = userRepository.findByEmail(user.getEmail());
+        if (usernameOptional.isPresent() ) {
             throw new UserAlreadyExistException("User with given username already exist");
+        }
+        if (emailOptional.isPresent()) {
+            throw new UserAlreadyExistException("User with given email already exist");
         }
         Role role = roleRepository.findByRoleName(UserConstants.USER_ROLE);
         user.addRole(role);
@@ -73,5 +80,19 @@ public class UserServiceImpl implements IUserService {
             isDeleted = true;
         }
         return isDeleted;
+    }
+
+    @Override
+    public void addUserProfile(UserProfileDto userProfileDto, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        if (user.getProfile() == null) {
+            UserProfile userProfile = UserProfileMapper.mapToUserProfile(userProfileDto, new UserProfile());
+            user.setProfile(userProfile);
+            userRepository.save(user);
+        } else {
+            throw new UserAlreadyExistException("User profile already exist");
+        }
     }
 }
