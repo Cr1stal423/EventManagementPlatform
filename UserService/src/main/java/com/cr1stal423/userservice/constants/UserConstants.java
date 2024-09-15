@@ -13,7 +13,17 @@ public class UserConstants {
 
     public static final String  MESSAGE_200 = "Request processed successfully";
 
+    public static final String  STATUS_422 = "422";
+
+    public static final String  MESSAGE_422 = "Update operation failed. Please try again";
+
+    public static final String  STATUS_500 = "500";
+
+    public static final String  MESSAGE_500 = "Delete operation failed. Please try again";
+
     public static final String  USER_ROLE = "USER";
 
     public static final String  ADMIN_ROLE = "ADMIN";
+
+
 }
