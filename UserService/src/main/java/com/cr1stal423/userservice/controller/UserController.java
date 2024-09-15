@@ -143,6 +143,7 @@ public class UserController {
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(new ResponseDto(UserConstants.STATUS_422, UserConstants.MESSAGE_422));
     }
+
     @DeleteMapping("/deleteUserAddress/{id}")
     public ResponseEntity<ResponseDto> deleteUserAddress(@PathVariable("id") Long addressId) {
         boolean isDeleted = userService.deleteUserAddress(addressId);
@@ -154,5 +155,22 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(new ResponseDto(UserConstants.STATUS_422, UserConstants.MESSAGE_422));
+    }
+
+    @PostMapping("/{userId}/addRole/{roleId}")
+    public ResponseEntity<ResponseDto> addRoleToUser(@PathVariable("userId") Long userId,
+                                                     @PathVariable("roleId") Long roleId) {
+        userService.addRole(userId, roleId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto(UserConstants.STATUS_200, UserConstants.MESSAGE_200));
+    }
+    @DeleteMapping("/{userId}/deleteRole/{roleId}")
+    public ResponseEntity<ResponseDto> deleteRole(@PathVariable("userId") Long userId,
+                                                  @PathVariable("roleId") Long roleId) {
+        userService.deleteRole(userId, roleId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto(UserConstants.STATUS_200, UserConstants.MESSAGE_200));
     }
 }

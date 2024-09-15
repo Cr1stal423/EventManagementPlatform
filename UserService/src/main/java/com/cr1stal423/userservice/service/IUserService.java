@@ -32,6 +32,10 @@ public interface IUserService {
 
     boolean deleteUserAddress(Long addressId);
 
+    void addRole(Long userId, Long roleId);
+
+    boolean deleteRole(Long userId,Long roleId);
+
 
 
 

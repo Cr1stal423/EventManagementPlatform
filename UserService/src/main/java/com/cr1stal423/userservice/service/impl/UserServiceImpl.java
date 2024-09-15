@@ -210,5 +210,31 @@ public class UserServiceImpl implements IUserService {
         return true;
     }
 
+    @Override
+    public void addRole(Long userId, Long roleId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        Role role = roleRepository.findById(roleId).orElseThrow(
+                () -> new ResourceNotFoundException("Role", "id", String.valueOf(roleId))
+        );
+        user.addRole(role);
+        userRepository.save(user);
+    }
+
+    @Override
+    public boolean deleteRole(Long userId, Long roleId) {
+        boolean isDeleted = true;
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        Role role = roleRepository.findById(roleId).orElseThrow(
+                () -> new ResourceNotFoundException("Role", "id", String.valueOf(roleId))
+        );
+        user.removeRole(role);
+        userRepository.save(user);
+        return isDeleted;
+    }
+
 
 }
