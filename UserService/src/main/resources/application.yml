@@ -1,24 +1,64 @@
 spring:
   application:
-    name: UserService
+    name: ${APP_NAME:UserService}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3307/UserDB
-    username: root
-    password: Sqlwer
-
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3310}/${DATABASE_NAME:UserDB}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:Sqlwer}
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: ${JWK_SET_URI:http://localhost:8081/realms/eventmanagmentplatform/protocol/openid-connect/certs}
 logging:
   level:
     org:
       hibernate:
         SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
       springframework:
         transaction: DEBUG
 
+server:
+  servlet:
+    session:
+      timeout: ${SESSION_TIMEOUT:60m}
+  port: ${SERVER_PORT:8091}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      readiness-state:
+        enabled: true
+      liveness-state:
+        enabled: true
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "userservice"
+    description: "Eazy Bank Accounts Microservice"
+    version: "1.0.0"
