@@ -1,8 +1,6 @@
 package com.cr1stal423.userservice.constants;
 
-public class UserConstants {
-    private UserConstants() {
-    }
+public interface UserConstants {
     public static final String  SAVINGS = "Savings";
 
     public static final String  STATUS_201 = "201";
