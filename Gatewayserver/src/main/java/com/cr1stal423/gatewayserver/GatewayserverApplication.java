@@ -22,8 +22,12 @@ public class GatewayserverApplication {
 				.route(p -> p
 						.path("/eventsSystem/userService/**")
 						.filters(f -> f.rewritePath("/eventsSystem/userService/(?<segment>.*)", "/${segment}")
-								.addResponseHeader("X-Respomse-Time", LocalDateTime.now().toString()))
-						.uri("lb://USERSERVICE")
-				).build();
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://USERS")
+				)
+				.route(p -> p.path("/eventsSystem/eventService/**")
+						.filters(f -> f.rewritePath("/eventsSystem/eventService/(?<segment>.*)", "/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://EVENTSERVICE")).build();
 	}
 }
