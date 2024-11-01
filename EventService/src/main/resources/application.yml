@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: ${SPRING_APP_NAME:events}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${HiBERNATE_SHOW_SQL:true}
+  datasource:
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:Sqlwer}
+    url: jdbc:mysql://${DATABASE_HOSTNAME:localhost}:${DATABASE_PORT:3311}/${DATABASE_NAME:EventDB}
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: ${JWT_SET_URI:http://localhost:8081/realms/eventmanagmentplatform/protocol/openid-connect/certs}
+logging:
+  level:
+    org:
+      springframework:
+        security: ${SPRING_SECURITY_LOG_LEVEL:DEBUG}
+        transaction: ${SPRING_TRANSACTION_LOG_LEVEL:DEBUG}
+
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+
+
+server:
+  port: ${SERVER_PORT:8090}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      readiness-state:
+        enabled: true
+      liveness-state:
+        enabled: true
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "events"
+    description: "Event System Events Microservice"
+    version: "1.0.0"
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
