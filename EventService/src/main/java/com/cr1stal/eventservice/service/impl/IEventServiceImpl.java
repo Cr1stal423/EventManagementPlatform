@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -114,14 +116,16 @@ public class IEventServiceImpl implements IEventService {
 
     @Override
     public List<EventDto> getAllSoonerEvents(LocalDate startDate, LocalDate endDate) {
-        List<Event> events = eventRepository.getAllSoonerEvents(startDate, endDate);
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+
+        List<Event> events = eventRepository.getAllSoonerEvents(startDateTime, endDateTime);
+
         if (events != null && !events.isEmpty()) {
-            List<EventDto> eventDtos = events.stream().map(event ->
-                    EventMapper.mapToEventDto(event, new EventDto())).toList();
-            return eventDtos;
+            return events.stream()
+                    .map(event -> EventMapper.mapToEventDto(event, new EventDto()))
+                    .collect(Collectors.toList());
         }
         return new ArrayList<>();
     }
-
-
 }
