@@ -12,6 +12,8 @@ public interface IUserService {
 
     UserDto getUser(Long userId);
 
+    UserDto getUserByEmail(String email);
+
     boolean updateUser(UserDto userDto);
 
     boolean deleteUser(Long userId);

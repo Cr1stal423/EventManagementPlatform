@@ -37,6 +37,13 @@ public class UserController {
                 .status(HttpStatus.OK)
                 .body(userDto);
     }
+    @GetMapping("/getUserByEmail")
+    public ResponseEntity<UserDto> getUserByEmail(@RequestParam("email") String email) {
+        UserDto userDto = userService.getUserByEmail(email);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userDto);
+    }
 
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateUser(@Valid @RequestBody UserDto userDto) {

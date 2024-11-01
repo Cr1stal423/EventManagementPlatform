@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ${APP_NAME:UserService}
+    name: ${APP_NAME:users}
   jpa:
     hibernate:
       ddl-auto: update
@@ -59,6 +59,6 @@ management:
 
 info:
   app:
-    name: "userservice"
-    description: "Eazy Bank Accounts Microservice"
+    name: "users"
+    description: "Event System Users Microservice"
     version: "1.0.0"

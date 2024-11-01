@@ -67,6 +67,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserDto getUserByEmail(String email) {
+        String userEmail = email;
+        userEmail.replaceFirst("%40", "@");
+        User user = userRepository.findByEmail(userEmail).orElseThrow(
+                () -> new ResourceNotFoundException("User", "email", email)
+        );
+        UserDto userDto = UserMapper.mapToUserDto(user, new UserDto());
+        return userDto;
+    }
+
+    @Override
     public boolean updateUser(UserDto userDto) {
         boolean isUpdated = false;
         if (userDto != null) {
