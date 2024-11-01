@@ -28,6 +28,6 @@ public class GatewayserverApplication {
 				.route(p -> p.path("/eventsSystem/eventService/**")
 						.filters(f -> f.rewritePath("/eventsSystem/eventService/(?<segment>.*)", "/${segment}")
 								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
-						.uri("lb://EVENTSERVICE")).build();
+						.uri("lb://EVENTS")).build();
 	}
 }
