@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -27,6 +29,8 @@ public class UserDto {
     private String lastName;
 
     private UserStatus status;
+
+    private List<RoleDto> roles;
 
     private UserProfileDto userProfileDto;
 }

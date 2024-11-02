@@ -2,6 +2,7 @@ package com.cr1stal423.userservice.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "user")
+@ToString(exclude = "roles")
 public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,14 +37,11 @@ public class User extends BaseEntity {
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
     public void addRole(Role role){
-        if(roles == null){
-            roles = new ArrayList<>();
-        }
         roles.add(role);
     }
     public void removeRole(Role role){
