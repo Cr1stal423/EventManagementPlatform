@@ -63,7 +63,19 @@ public class UserServiceImpl implements IUserService {
                 () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
         );
         UserDto userDto = UserMapper.mapToUserDto(user, new UserDto());
+        userDto.setUserProfileDto(getUserProfileDto(userId));
         return userDto;
+    }
+    public UserProfileDto getUserProfileDto(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        Optional<UserProfile> userProfile = Optional.ofNullable(user.getProfile());
+        if (!userProfile.isEmpty()){
+            UserProfileDto userProfileDto = UserProfileMapper.mapToUserProfileDto(userProfile.get(), new UserProfileDto());
+            return userProfileDto;
+        }
+        return null;
     }
 
     @Override
@@ -74,6 +86,7 @@ public class UserServiceImpl implements IUserService {
                 () -> new ResourceNotFoundException("User", "email", email)
         );
         UserDto userDto = UserMapper.mapToUserDto(user, new UserDto());
+        userDto.setUserProfileDto(getUserProfileDto(user.getId()));
         return userDto;
     }
 
