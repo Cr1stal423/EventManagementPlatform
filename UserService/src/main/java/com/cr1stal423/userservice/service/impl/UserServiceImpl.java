@@ -21,6 +21,7 @@ import com.cr1stal423.userservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,6 +65,8 @@ public class UserServiceImpl implements IUserService {
         );
         UserDto userDto = UserMapper.mapToUserDto(user, new UserDto());
         userDto.setUserProfileDto(getUserProfileDto(userId));
+        userDto.setUserAddressDto(getUserAddressDtos(userId));
+
         return userDto;
     }
     public UserProfileDto getUserProfileDto(Long userId) {
@@ -78,6 +81,22 @@ public class UserServiceImpl implements IUserService {
         return null;
     }
 
+    public List<UserAddressDto> getUserAddressDtos(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", String.valueOf(userId))
+        );
+        List<UserAddress> userAddresses = user.getAddress();
+        if (!userAddresses.isEmpty()) {
+            List<UserAddressDto> userAddressDtoList = new ArrayList<>();
+            userAddresses.forEach(userAddress -> {
+                UserAddressDto userAddressDto = UserAddressMapper.mapToUserAddressDto(userAddress, new UserAddressDto());
+                userAddressDtoList.add(userAddressDto);
+            });
+            return userAddressDtoList;
+        }
+        return new ArrayList<>();
+    }
+
     @Override
     public UserDto getUserByEmail(String email) {
         String userEmail = email;
@@ -87,6 +106,7 @@ public class UserServiceImpl implements IUserService {
         );
         UserDto userDto = UserMapper.mapToUserDto(user, new UserDto());
         userDto.setUserProfileDto(getUserProfileDto(user.getId()));
+        userDto.setUserAddressDto(getUserAddressDtos(user.getId()));
         return userDto;
     }
 

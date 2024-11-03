@@ -33,4 +33,6 @@ public class UserDto {
     private List<RoleDto> roles;
 
     private UserProfileDto userProfileDto;
+
+    private List<UserAddressDto> userAddressDto;
 }
