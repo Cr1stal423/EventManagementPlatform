@@ -10,6 +10,13 @@ spring:
       httpclient:
         connect-timeout: 2000
         response-timeout: 4s
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
+  main:
+    allow-bean-definition-overriding: true
 eureka:
   instance:
     prefer-ip-address: true
@@ -46,3 +53,11 @@ info:
 
 server:
   port: 8780
+
+springdoc:
+    urls:
+      - name: User Service
+        url: /aggregate/users-service/v3/api-docs
+      - name: Event Service
+        url: /aggregate/event-service/v3/api-docs
+
