@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
@@ -29,8 +27,6 @@ public class Event extends BaseModel{
     private String description;
     @Column(nullable = false)
     private Integer duration;
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Ticket> tickets = new HashSet<>();
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
@@ -38,13 +34,4 @@ public class Event extends BaseModel{
     @JoinColumn(name = "organizer_id")
     private Organizer organizer;
 
-    public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
-        ticket.setEvent(this);
-    }
-
-    public void removeTicket(Ticket ticket) {
-        tickets.remove(ticket);
-        ticket.setEvent(null);
-    }
 }

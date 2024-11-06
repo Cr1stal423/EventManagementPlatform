@@ -43,7 +43,7 @@ public class EventController {
     }
 
     @GetMapping("/getAllEventsByCategory/{categoryName}")
-    public ResponseEntity<Set<EventDto>> getAllEventsByCategoty(@PathVariable("categoryName") String categoryName) {
+    public ResponseEntity<Set<EventDto>> getAllEventsByCategory(@PathVariable("categoryName") String categoryName) {
         Set<EventDto> eventDtos = eventService.getAllEventsByCategory(categoryName);
         return ResponseEntity
                 .status(HttpStatus.OK)
