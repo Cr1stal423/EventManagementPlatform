@@ -40,6 +40,7 @@ public class User extends BaseEntity {
     private List<Role> roles = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+    private String keycloackId;
 
     public void addRole(Role role){
         roles.add(role);

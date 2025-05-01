@@ -22,6 +22,8 @@ logging:
       springframework:
         transaction: DEBUG
 
+keycloak:
+  url: http://localhost:7070/auth/admin/realms/master"
 server:
   servlet:
     session:

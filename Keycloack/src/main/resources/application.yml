@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: "keycloack-admin"
+
+keycloak:
+  realm: "master"
+  auth-server-url: "http://localhost:7080/auth"
+  resource: "eventsSystem-cc"
+  credentials:
+    secret: "A6mwgKxpC5HIdmWSdyJ0O6bGsdW5MFAa"

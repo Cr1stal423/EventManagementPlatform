@@ -7,13 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="eurekaserver" />
+        <module name="gatewayserver" />
+        <module name="booking" />
+        <module name="keycloack" />
         <module name="UserService" />
+        <module name="eventservice" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="UserService" options="-parameters" />
+      <module name="booking" options="-parameters" />
+      <module name="eurekaserver" options="-parameters" />
+      <module name="eventservice" options="-parameters" />
+      <module name="gatewayserver" options="-parameters" />
+      <module name="keycloack" options="-parameters" />
     </option>
   </component>
 </project>
