@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c32e4fe-61a7-49e4-9fec-c412174a0f37" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Booking/src/main/java/com/cr1stal423/booking/DTO/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="5c32e4fe-61a7-49e4-9fec-c412174a0f37" name="Changes" comment="Add unit tests for EventController and UserController&#10;&#10;Introduced comprehensive unit tests for both `EventController` and `UserController` to verify endpoints, service interactions, and expected responses. These tests enhance coverage and ensure the reliability of core functionalities.">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booking/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Booking/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Booking/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Booking/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eurekaserver/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Eurekaserver/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Eurekaserver/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Eurekaserver/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/constants/EventConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/constants/EventConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/client/UsersFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/client/UsersFallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/client/UsersFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/client/UsersFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/impl/IEventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/src/main/java/com/cr1stal/eventservice/service/impl/IEventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/EventService/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gatewayserver/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gatewayserver/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gatewayserver/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Gatewayserver/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/com/cr1stal423/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/com/cr1stal423/userservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserService/src/main/java/com/cr1stal423/userservice/DTO/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/java/com/cr1stal423/userservice/DTO/UserDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/UserService/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +35,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,34 +68,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.EurekaserverApplication.executor": "Run",
-    "Spring Boot.EventserviceApplication.executor": "Run",
-    "Spring Boot.GatewayserverApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "com.codeium.enabled": "true",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/cr1stal423/IdeaProjects/CarShowroom",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in eurekaserver.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventControllerTest.createEventTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventControllerTest.getAllOrganizerEventsTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventControllerTest.getEventById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.createUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.deleteRoleFromUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.deleteUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.getUserByEmailTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.getUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.setUserProfileTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.updateUserTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaserverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EventserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayserverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/cr1stal423/EventManagementPlatform/Config-server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -101,11 +124,89 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EurekaserverApplication">
+  <component name="RunManager" selected="Spring Boot.EventserviceApplication">
+    <configuration name="All in eurekaserver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eurekaserver" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eventservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cr1stal.eventservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cr1stal.eventservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.cr1stal.eventservice.controller.EventControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventControllerTest.getAllOrganizerEventsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eventservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cr1stal.eventservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cr1stal.eventservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.cr1stal.eventservice.controller.EventControllerTest" />
+      <option name="METHOD_NAME" value="getAllOrganizerEventsTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventControllerTest.getEventById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eventservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cr1stal.eventservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cr1stal.eventservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.cr1stal.eventservice.controller.EventControllerTest" />
+      <option name="METHOD_NAME" value="getEventById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cr1stal423.userservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cr1stal423.userservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.cr1stal423.userservice.controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BookingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="booking" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cr1stal423.booking.BookingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cr1stal423.config_server.ConfigServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -154,8 +255,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -194,11 +295,54 @@
       <workItem from="1743519725069" duration="12000" />
       <workItem from="1745422005815" duration="30000" />
       <workItem from="1746024997198" duration="599000" />
-      <workItem from="1746119430033" duration="1625000" />
+      <workItem from="1746119430033" duration="4274000" />
+      <workItem from="1746194097279" duration="621000" />
+      <workItem from="1746363962552" duration="1756000" />
+      <workItem from="1746450804949" duration="1199000" />
+      <workItem from="1746519428002" duration="599000" />
+      <workItem from="1746627263914" duration="595000" />
+      <workItem from="1746792293734" duration="599000" />
+      <workItem from="1746972933303" duration="599000" />
+      <workItem from="1747040248099" duration="623000" />
+      <workItem from="1747221819218" duration="791000" />
+      <workItem from="1747240397871" duration="599000" />
+      <workItem from="1747312817563" duration="836000" />
+      <workItem from="1747335524024" duration="13760000" />
+      <workItem from="1747382061290" duration="599000" />
+      <workItem from="1747394754804" duration="3165000" />
+      <workItem from="1747579948681" duration="599000" />
+      <workItem from="1747641782896" duration="3668000" />
+      <workItem from="1747725195670" duration="2408000" />
+      <workItem from="1747748426811" duration="599000" />
+      <workItem from="1747749845779" duration="40000" />
+      <workItem from="1747836306280" duration="599000" />
+      <workItem from="1748343189612" duration="1672000" />
     </task>
+    <task id="LOCAL-00001" summary="Save current project state">
+      <option name="closed" value="true" />
+      <created>1746123879090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746123879090</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add unit tests for EventController and UserController&#10;&#10;Introduced comprehensive unit tests for both `EventController` and `UserController` to verify endpoints, service interactions, and expected responses. These tests enhance coverage and ensure the reliability of core functionalities.">
+      <option name="closed" value="true" />
+      <created>1747345930719</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747345930719</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Save current project state" />
+    <MESSAGE value="Add unit tests for EventController and UserController&#10;&#10;Introduced comprehensive unit tests for both `EventController` and `UserController` to verify endpoints, service interactions, and expected responses. These tests enhance coverage and ensure the reliability of core functionalities." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for EventController and UserController&#10;&#10;Introduced comprehensive unit tests for both `EventController` and `UserController` to verify endpoints, service interactions, and expected responses. These tests enhance coverage and ensure the reliability of core functionalities." />
   </component>
 </project>

@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UsersFallback implements UsersFeignClient {
-
-
     @Override
     public ResponseEntity<UserDto> getUserByEmail(String email) {
         return null;

@@ -1,6 +1,8 @@
 spring:
   application:
     name: "gatewayserver"
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
   cloud:
     gateway:
       discovery:
@@ -17,42 +19,13 @@ spring:
           jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
   main:
     allow-bean-definition-overriding: true
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      default: http://localhost:8761/eureka/
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  health:
-    readiness-state:
-      enabled: true
-    liveness-state:
-      enabled: true
-  endpoint:
-    gateway:
-      enabled: true
-    health:
-      probes:
-        enabled: true
-    info:
-      env:
-        enabled: true
 
 info:
   title: ${INFO_TITLE:gatewayserver}
   version: ${INFO_VERSION:1.0.0}
   description: ${INFO_DESCRIPTION:Eazy Bank Gateway Server application}
 
-server:
-  port: 8780
 
 springdoc:
     urls:

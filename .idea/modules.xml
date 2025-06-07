@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EventManagementPlatform.iml" filepath="$PROJECT_DIR$/.idea/EventManagementPlatform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Booking/booking.iml" filepath="$PROJECT_DIR$/Booking/booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventService/eventservice.iml" filepath="$PROJECT_DIR$/EventService/eventservice.iml" />
     </modules>
   </component>
 </project>

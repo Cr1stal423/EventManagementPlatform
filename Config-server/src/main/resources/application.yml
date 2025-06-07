@@ -1,0 +1,30 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Cr1stal423/Owner-avatar-EventManagementPlatform-config.git
+          default-label: ${DEFAULT_LABEL:master}
+          timeout: ${TIMEOUT:5}
+          clone-on-start: ${CLONE_ON_START:true}
+          force-pull: ${FORCE_PULL:true}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}

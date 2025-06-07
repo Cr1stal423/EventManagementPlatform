@@ -13,6 +13,7 @@ import com.cr1stal.eventservice.repository.EventRepository;
 import com.cr1stal.eventservice.repository.OrganizerRepository;
 import com.cr1stal.eventservice.service.IEventService;
 import com.cr1stal.eventservice.service.client.UsersFeignClient;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,16 @@ public class IEventServiceImpl implements IEventService {
     private OrganizerRepository organizerRepository;
     private CategoryRepository categoryRepository;
     private UsersFeignClient usersFeignClient;
+
     @Override
     public void createEvent(EventDetailsDto eventDetailsDto) {
         Event event = EventMapper.mapToEvent(eventDetailsDto.getEventDto(), new Event());
         Category category = categoryRepository.findByCategoryName(eventDetailsDto.getCategoryDto().getCategoryName()).orElseThrow(
                 () -> new ResourceNotFoundException("Category", "name", eventDetailsDto.getCategoryDto().getCategoryName())
         );
-       ResponseEntity<UserDto> userDtoResponseEntity = usersFeignClient.getUserByEmail(eventDetailsDto.getOrganizerDto().getEmail());
-       UserDto userDto = userDtoResponseEntity.getBody();
-       Organizer organizer = new Organizer();
+        ResponseEntity<UserDto> userDtoResponseEntity = usersFeignClient.getUserByEmail(eventDetailsDto.getOrganizerDto().getEmail());
+        UserDto userDto = userDtoResponseEntity.getBody();
+        Organizer organizer = new Organizer();
         organizer.setFirstName(userDto.getFirstName());
         organizer.setLastName(userDto.getLastName());
         organizer.setEmail(userDto.getEmail());
@@ -57,7 +59,7 @@ public class IEventServiceImpl implements IEventService {
     @Override
     public EventDto getEventById(Long eventId) {
         Event event = eventRepository.findById(eventId).orElseThrow(
-                () -> new ResourceNotFoundException("Event", "id",eventId.toString())
+                () -> new ResourceNotFoundException("Event", "id", eventId.toString())
         );
         EventDto eventDto = EventMapper.mapToEventDto(event, new EventDto());
         return eventDto;
@@ -94,8 +96,8 @@ public class IEventServiceImpl implements IEventService {
         Set<Event> events = organizerRepository.getAllEventsByOrganizer(organizer.getEmail());
         if (events != null && !events.isEmpty()) {
             Set<EventDto> eventDtos = events.stream().map(event ->
-                    EventMapper.mapToEventDto(event,new EventDto())).collect(Collectors.toSet());
-            return  eventDtos;
+                    EventMapper.mapToEventDto(event, new EventDto())).collect(Collectors.toSet());
+            return eventDtos;
         }
         return new HashSet<>();
     }

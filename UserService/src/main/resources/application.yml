@@ -1,26 +1,15 @@
 spring:
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
   application:
     name: ${APP_NAME:users}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
   datasource:
     url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3310}/${DATABASE_NAME:UserDB}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:Sqlwer}
 #  security:
 #    oauth2:
 #      resourceserver:
 #        jwt:
 #          jwk-set-uri: ${JWK_SET_URI:http://localhost:8081/realms/eventmanagmentplatform/protocol/openid-connect/certs}
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-      springframework:
-        transaction: DEBUG
 
 keycloak:
   url: http://localhost:7070/auth/admin/realms/master"
@@ -30,34 +19,6 @@ server:
       timeout: ${SESSION_TIMEOUT:60m}
   port: ${SERVER_PORT:8091}
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-    health:
-      readiness-state:
-        enabled: true
-      liveness-state:
-        enabled: true
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      probes:
-        enabled: true
-  info:
-    env:
-      enabled: true
 
 info:
   app:
